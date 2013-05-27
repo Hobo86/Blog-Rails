@@ -1,13 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Hobo Blog</title>
+	<meta name="author" content="Hobo">
+  <meta name="description" content="Hobo description">
+	
+	<link href="http://blog.devtang.com/favicon.png" rel="icon">
+	
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body style="background-color: #EEEEEE;">
-<%= yield %>
+	
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28029597-1']);
+  _gaq.push(['_trackPageview']);
 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+	</script>
+	
+</head>
+<body class="">
+	<iframe style="display: none;" id="sina_anywhere_iframe"></iframe>
+	<!--Header-->
+  <header role="banner">
+		<hgroup>
+  		<h1><a href="http://www.hobo86.com">Hobo Blog</a></h1>
+   	 	<h2>在路上~</h2>
+		</hgroup>
+	</header>
+	
+	<!--RSS-->
+  <nav role="navigation">
+		<ul class="subscription" data-subscription="rss">
+  		<li><a href="http://www.hobo86.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+		</ul>
+		
+		<form action="http://google.com/search" method="get">
+		  <fieldset role="search">
+		    <input type="hidden" name="q" value="site:www.hobo86.com">
+		    <input class="search" type="text" name="q" results="0" placeholder="Search">
+		  </fieldset>
+			<fieldset class="mobile-nav">
+				<select>
+					<option value="">Navigate…</option>
+					<option value="http://www.hobo86.com/">» 首页</option>
+				</select>
+			</fieldset>
+		</form>
+
+		
+		<ul class="main-navigation">
+			<li> <%= link_to "首页", '/' %></li>
+			<li> <%= link_to "归档", archives_path %></li>
+			<li> <%= link_to "分类", categories_path %></li>
+		  <li><a href="http://weibo.com/hobo86" target="_blank">我的微博</a></li>
+		</ul>
+	</nav>
+<div id="main">
+	<div id="content">
+	<%= yield %>
+	<aside class="sidebar">
+			<section class="odd">
+		  	<h1>Category</h1>
+		  	<ul id="recent_posts">
+					<% @categories_side.each do |category| %>
+						<li class="post">
+			        <%= link_to category.name, category %>
+			      </li>
+					<% end %>
+			 	</ul>
+			</section>
+			<section class="odd">
+		  	<h1>Archive</h1>
+		  	<ul id="recent_posts">
+					<% @archives_side.each do |archive| %>
+						<li class="post">
+			        <%= link_to archive.month, archive_path(archive.month) %>
+			      </li>
+					<% end %>
+			 	</ul>
+			</section>
+			<section class="even">
+			  <h1>About Me</h1>
+			  <p>  成都云创新<br>
+			      <br>iOS开发工程师
+			      <br>PHP开发工程师
+						<br>Ruby初学者
+			      <br>新浪微博: <a href="http://weibo.com/hobo86" target="_blank">Steven_oO</a>
+			      <span id="wb_follow_btn">
+							<span class="WB_btnA WB_widgets" node-type="followBtn">
+								<span> <em class="WB_btnicn_add" node-type="followImg"></em><em>加关注</em>
+								</span>
+							</span>
+						</span>
+			  </p>
+			</section>
+
+		</aside>
+		<span class="toggle-sidebar"></span>
+	</div>
+</div>
+	
+  <footer role="contentinfo">
+		<p>Copyright © 2013 - Hobo -
+			<span class="credit">Powered by <a href="http://rubyonrails.org/" target="_blank">Ruby On Rails</a></span>
+		</p>
+	</footer>
 </body>
 </html>

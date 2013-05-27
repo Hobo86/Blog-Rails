@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
 	http_basic_authenticate_with :name => "Steven", :password => "12f0d50", :except => [:index, :show]
-
+  #skip_before_filter :require_login, :only => [:index]
+  
+  #USERS = { "Steven" => "12f0d50" }
+ 
+  #before_filter :authenticate, :only => [:index]
+  #before_filter :check_authorization, :only => [:index]
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -8,6 +14,16 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  # GET /posts/admin
+  def admin
+    @posts = Post.all
+
+    respond_to do |format|
+      format.html # admin.html.erb
       format.json { render json: @posts }
     end
   end
@@ -82,4 +98,17 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+ 
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      USERS[username]
+    end
+  end
+  
+  #def check_authorization
+  #  raise User::NotAuthorized unless current_user.admin?
+  #end
+
 end

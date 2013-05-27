@@ -1,0 +1,10 @@
+<h2><%= @category.name %></h2>
+
+<table>
+<% @category.posts.each do |post| %>
+  <tr>
+    <td><%= link_to post.title, post %></td>
+		<td><%post.content%>
+  </tr>
+<% end %>
+</table>

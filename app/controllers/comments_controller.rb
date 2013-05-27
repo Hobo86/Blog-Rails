@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-	http_basic_authenticate_with :name => "Steven", :password => "12f0d50", :only => :destroy
-	def create
+  http_basic_authenticate_with :name => "Steven", :password => "12f0d50", :except => [:create]
+    def create
     	@post = Post.find(params[:post_id])
     	@comment = @post.comments.create(params[:comment])
     	redirect_to post_path(@post)
@@ -12,4 +12,5 @@ class CommentsController < ApplicationController
     	@comment.destroy
     	redirect_to post_path(@post)
   	end
+
 end

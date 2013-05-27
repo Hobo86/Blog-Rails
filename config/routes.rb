@@ -1,9 +1,17 @@
 Blog::Application.routes.draw do
+
   resources :posts do
   	resources :comments
+    collection do
+        get 'admin'
+        get 'archive'
+      end
   end
-
-
+  
+  resources :archives
+  
+  resources :categories
+  
   get "welcome/index"
 
   # The priority is based upon order of creation:
