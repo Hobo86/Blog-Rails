@@ -5,8 +5,8 @@
 		</header>
 		<div id="blog-archives">
 			<% @archives.each do |archive| %>
-				<h2><%= archive.month%></h2>
-				<% archive.archive_posts.each do |post|%>
+				<h2><%= archive[:month]%></h2>
+				<% archive[:posts].each do |post|%>
 					<article>
 						<h1>
 							<%= link_to post.title, post %>
@@ -16,11 +16,7 @@
 							<span class="day">18</span> 
 							<span class="year">2013</span>
 						</time>
-						<footer>
-				  		<span class="categories">posted in 
-								<a class="category" ><%= link_to post.name, post %></a>
-							</span>
-						</footer>
+
 					</article>
 				<% end %>
 			<% end %>
