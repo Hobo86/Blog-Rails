@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   #layout "main"
   protect_from_forgery
+  before_filter :recentPosts
   before_filter :categories
   before_filter :archives
   #before_filter :require_login
@@ -8,6 +9,11 @@ class ApplicationController < ActionController::Base
   #rescue_from User::NotAuthorized, :with => :user_not_authorized
  
   private
+
+  def recentPosts
+    fields = "id,title"
+    @recent_posts = Post.order("created_at DESC").limit(3).select(fields)
+  end
   
   def categories
     @categories_side = Category.all

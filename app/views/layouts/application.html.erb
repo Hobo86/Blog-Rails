@@ -5,17 +5,9 @@
   <title>Hobo Blog</title>
 	<meta name="author" content="Hobo">
   <meta name="description" content="Hobo description">
-	
-	
-	
-  <!--
-  	<link href="http://blog.devtang.com/favicon.png" rel="icon">
-  	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
-  -->
   <link href="/assets/rails.png" rel="icon">
   <%= stylesheet_link_tag "screen"%>
-  <%= javascript_include_tag "octopress","ender","modernizr-2.0"%>
+  <%= javascript_include_tag "modernizr-2.0","ender", "octopress"%>
   <%= csrf_meta_tags %>
 	
   <script type="text/javascript">
@@ -66,7 +58,7 @@
 			<li> <%= link_to "Archives", archives_path %></li>
 			<li> <%= link_to "Categories", categories_path %></li>
 			<li><a href="https://github.com/Hobo86" target="_blank">GitHub</a></li>
-		 	<li><a href="http://weibo.com/hobo86" target="_blank">微博</a></li>
+		 	<!--<li><a href="http://weibo.com/hobo86" target="_blank">微博</a></li>-->
 		</ul>
 	</nav>
 <div id="main">
@@ -76,8 +68,11 @@
 			<section class="odd">
 		  	<h1>Recent Posts</h1>
 		  		<ul id="recent_posts">
-					<li class="post">post</li>
-					<li class="post">post</li>
+					<% @recent_posts.each do |post| %>
+						<li class="post">
+			        <%= link_to post.title, post %>
+			        	</li>
+					<% end %>
 			 	</ul>
 			</section>
 			<section class="odd">
