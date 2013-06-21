@@ -8,8 +8,11 @@
 	
 	<link href="http://blog.devtang.com/favicon.png" rel="icon">
 	
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <!--<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+  -->
+  <%= stylesheet_link_tag "screen"%>
+  <%= javascript_include_tag "octopress","ender","modernizr-2.0"%>
   <%= csrf_meta_tags %>
 	
   <script type="text/javascript">
@@ -56,10 +59,11 @@
 
 		
 		<ul class="main-navigation">
-			<li> <%= link_to "首页", '/' %></li>
-			<li> <%= link_to "归档", archives_path %></li>
-			<li> <%= link_to "分类", categories_path %></li>
-		  <li><a href="http://weibo.com/hobo86" target="_blank">我的微博</a></li>
+			<li> <%= link_to "Blog", '/' %></li>
+			<li> <%= link_to "Archives", archives_path %></li>
+			<li> <%= link_to "Categories", categories_path %></li>
+			<li><a href="https://github.com/Hobo86" target="_blank">GitHub</a></li>
+		 	<li><a href="http://weibo.com/hobo86" target="_blank">微博</a></li>
 		</ul>
 	</nav>
 <div id="main">
@@ -67,8 +71,15 @@
 	<%= yield %>
 	<aside class="sidebar">
 			<section class="odd">
+		  	<h1>Recent Posts</h1>
+		  		<ul id="recent_posts">
+					<li class="post">post</li>
+					<li class="post">post</li>
+			 	</ul>
+			</section>
+			<section class="odd">
 		  	<h1>Category</h1>
-		  	<ul id="recent_posts">
+		  		<ul id="recent_posts">
 					<% @categories_side.each do |category| %>
 						<li class="post">
 			        <%= link_to category.name, category %>
@@ -78,7 +89,7 @@
 			</section>
 			<section class="odd">
 		  	<h1>Archive</h1>
-		  	<ul id="recent_posts">
+		  		<ul id="recent_posts">
 					<% @archives_side.each do |archive| %>
 						<li class="post">
 			        <%= link_to archive.month, archive_path(archive.month) %>
@@ -89,16 +100,17 @@
 			<section class="even">
 			  <h1>About Me</h1>
 			  <p>  成都云创新<br>
-			      <br>iOS开发工程师
-			      <br>PHP开发工程师
-						<br>Ruby初学者
-			      <br>新浪微博: <a href="http://weibo.com/hobo86" target="_blank">Steven_oO</a>
-			      <span id="wb_follow_btn">
-							<span class="WB_btnA WB_widgets" node-type="followBtn">
-								<span> <em class="WB_btnicn_add" node-type="followImg"></em><em>加关注</em>
-								</span>
+			      	<br>iOS
+			      	<br>PHP
+					<br>Ruby
+					<br>Linux
+			      	<br>新浪微博: <a href="http://weibo.com/hobo86" target="_blank">Steven_oO</a>
+			      	<span id="wb_follow_btn">
+						<span class="WB_btnA WB_widgets" node-type="followBtn">
+							<span> <em class="WB_btnicn_add" node-type="followImg"></em><em>加关注</em>
 							</span>
 						</span>
+					</span>
 			  </p>
 			</section>
 
@@ -107,10 +119,20 @@
 	</div>
 </div>
 	
-  <footer role="contentinfo">
+<footer role="contentinfo">
 		<p>Copyright © 2013 - Hobo -
 			<span class="credit">Powered by <a href="http://rubyonrails.org/" target="_blank">Ruby On Rails</a></span>
 		</p>
-	</footer>
+</footer>
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3435398785" type="text/javascript" charset="utf-8"></script>
+<script>
+WB2.anyWhere(function(W){
+W.widget.followButton({
+    uid: 1738805523,
+    id: "wb_follow_btn"
+    });
+});
+</script>
+
 </body>
 </html>

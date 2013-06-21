@@ -4,21 +4,29 @@
 			<h1 class="entry-title">Blog Archive</h1>
 		</header>
 		<div id="blog-archives">
-			<% @archives.each do |archive| %>
-				<h2><%= archive[:month]%></h2>
-				<% archive[:posts].each do |post|%>
-					<article>
-						<h1>
-							<%= link_to post.title, post %>
-						</h1>
-						<time datetime="<%= post.created_at%>" pubdate="">
-							<span class="month">May</span> 
-							<span class="day">18</span> 
-							<span class="year">2013</span>
-						</time>
-
-					</article>
-				<% end %>
+			<%= month = "" %>
+			<% @posts.each do |post|%>
+				<%= tmpMonth = post.created_at.strftime("%Y-%m") 
+				if month != tmpMonth 
+					month = tmpMonth
+					label_tag(month)
+				end
+				%>
+				<article>
+					<h1>
+						<%= link_to post.title, post %>
+					</h1>
+					<time datetime="<%= post.created_at%>" pubdate="">
+						<span class="month"><%= post.created_at.strftime("%b")%></span> 
+						<span class="day"><%= post.created_at.strftime("%d")%></span> 
+						<span class="year"><%= post.created_at.strftime("%Y")%></span>
+					</time>
+					<footer>
+				  		<span class="categories">posted in 
+							<a class="category" ><%= link_to post.category.name, post.category %></a>
+						</span>
+					</footer>
+				</article>
 			<% end %>
 		</div>
 	</article>

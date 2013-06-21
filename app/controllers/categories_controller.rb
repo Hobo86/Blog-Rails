@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
 	http_basic_authenticate_with :name => "Steven", :password => "12f0d50", :except => [:index, :show]
   
   def index
-    @categories = Category.order("created_at DESC")
+    @categories = Category.includes("posts").order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
   end
   
   def show
-    @category = Category.find(params[:id])
+    @category = Category.includes("posts").find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

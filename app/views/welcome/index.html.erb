@@ -2,26 +2,29 @@
 
 <div class="blog-index">
 	<% @posts.each do |post| %>
-  <article>
+  	<article>
 		<header>
 			<h1 class="entry-title">
 				<%= link_to post.title, post %>
 			</h1>
 			<p class="meta">
-				<time datetime="2013-05-18T17:37:00+08:00" pubdate="" data-updated="true">May 18<span>th</span>, 2013</time>
-   	 	</p>
+				<time datetime="2013-05-18T17:37:00+08:00" pubdate="" data-updated="true">
+					<span class="month"><%= post.created_at.strftime("%b")%></span> 
+					<span class="day"><%= post.created_at.strftime("%d,")%></span> 
+					<span class="year"><%= post.created_at.strftime("%Y")%></span>
+				</time>
+   	 		</p>
 	 	</header>
 	 	<div class="entry-content">
-		 	<!--<h3>前言</h3>-->
 			<p><%= post.content %></p>
 	 	</div>
-  	<footer>
+  		<footer>
 			<a rel="full-article" <%= link_to "更多 →", post %></a>
-  	</footer>
+  		</footer>
 	</article>
 	<% end %>
 	
-  <div class="pagination">
+  	<div class="pagination">
 		<!--<a class="prev" href="">← Older</a>-->
 		<li> <%= link_to "Blog Archives", archives_path %></li>
 	</div>

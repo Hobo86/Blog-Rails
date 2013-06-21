@@ -7,19 +7,19 @@
 		<div id="blog-archives">
 			<% @categories.each do |category| %>
 				<h2><%= category.name%></h2>
-				<% category.new_posts.each do |post|%>
+				<% category.posts.each do |post|%>
 					<article>
 						<h1>
 							<%= link_to post.title, post %>
 						</h1>
 						<time datetime="<%= post.created_at%>" pubdate="">
-							<span class="month">May</span> 
-							<span class="day">18</span> 
-							<span class="year">2013</span>
+							<span class="month"><%= post.created_at.strftime("%b")%></span> 
+							<span class="day"><%= post.created_at.strftime("%d")%></span> 
+							<span class="year"><%= post.created_at.strftime("%Y")%></span>
 						</time>
 						<footer>
-				  		<span class="categories">posted in 
-								<a class="category" ><%= link_to category.name, category %></a>
+				  			<span class="categories">posted in 
+								<a class="category" ><%= link_to post.category.name, post.category %></a>
 							</span>
 						</footer>
 					</article>
