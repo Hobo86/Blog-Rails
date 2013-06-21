@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   skip_before_filter :require_login, :only => [:index]
   def index
-    @posts = Post.all
+    @posts = Post.limit(10)
 
     respond_to do |format|
       format.html # show.html.erb
