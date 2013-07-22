@@ -21,19 +21,19 @@
   </div>
 	
   <div class="field">
-    <%= post_form.label :category %><br />
-    <%= post_form.text_field :category %>
+    <%= post_form.label :category_id %><br />
+    <%= post_form.text_field :category_id %>
   </div>
   
   <div class="field">
     <%= post_form.label :content %><br />
-    <%= post_form.text_area :content %>
+    <%= post_form.kindeditor :content, :window_onload => true%>
   </div>
 	
   <h2>Tags</h2>
   <%= render :partial => 'tags/form',
              :locals => {:form => post_form} %>
-						 
+				 
   <div class="actions">
     <%= post_form.submit %>
   </div>

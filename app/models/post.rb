@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
     belongs_to :category
     
-  	attr_accessible :content, :name, :title, :tags_attributes, :categories_attributes
+  	attr_accessible :content, :name, :title, :category_id, :tags_attributes, :categories_attributes
 	  validates :name,  	:presence => true
   	validates :title, 	:presence => true,
             			      :length => { :minimum => 5 },

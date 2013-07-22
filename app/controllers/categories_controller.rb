@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-	http_basic_authenticate_with :name => "Steven", :password => "12f0d50", :except => [:index, :show]
+	http_basic_authenticate_with :name => "Steven", :password => "123456", :except => [:index, :show]
   
   def index
     @categories = Category.includes("posts").order("created_at DESC")

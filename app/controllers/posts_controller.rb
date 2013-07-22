@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-	http_basic_authenticate_with :name => "Steven", :password => "12f0d50", :except => [:index, :show]
+	http_basic_authenticate_with :name => "Steven", :password => "123456", :except => [:index, :show]
   #skip_before_filter :require_login, :only => [:index]
   
-  #USERS = { "Steven" => "12f0d50" }
+  #USERS = { "Steven" => "123456" }
  
   #before_filter :authenticate, :only => [:index]
   #before_filter :check_authorization, :only => [:index]
