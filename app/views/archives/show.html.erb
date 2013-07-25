@@ -21,7 +21,7 @@
    	 		</p>
 	 	</header>
 	 	<div class="entry-content">
-			<p><%= post.content %></p>
+			<p><%= post.content.html_safe %></p>
 	 	</div>
   		<footer>
 			<a rel="full-article" <%= link_to "更多 →", post %></a>
