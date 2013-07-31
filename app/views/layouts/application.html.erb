@@ -6,7 +6,7 @@
 	<meta name="author" content="Hobo">
   <meta name="description" content="Hobo description">
   <link href="/assets/favicon.png" rel="icon">
-  <%= stylesheet_link_tag "screen"%>
+  <%= stylesheet_link_tag "application", "screen"%>
   <%= javascript_include_tag "application","modernizr-2.0","ender", "octopress"%>
   <%= csrf_meta_tags %>
 	
@@ -38,6 +38,17 @@
 		<ul class="subscription" data-subscription="rss">
   		<li><a href="http://www.hobo86.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
 		</ul>
+	 	<% if @_current_user %>
+    	<p class="notice"><%= @_current_user.nickname %></p>
+    	<ul class="subscription" data-subscription="rss">
+  			<li> <%= link_to "Logout", "users/logout" %></li>
+			</ul>
+		<% else %>
+    	<ul class="subscription" data-subscription="rss">
+  			<li> <%= link_to "Login", "users/login" %></li>
+  			<li> <%= link_to "Register", "users/register" %></li>
+			</ul>
+  	<% end %>
 		
 		<form action="http://google.com/search" method="get">
 		  <fieldset role="search">
@@ -63,6 +74,12 @@
 	</nav>
 <div id="main">
 	<div id="content">
+ 	<% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
+  <% if flash[:error] %>
+    <p class="error"><%= flash[:error] %></p>
+  <% end %>
 	<%= yield %>
 	<aside class="sidebar">
 			<section class="odd">

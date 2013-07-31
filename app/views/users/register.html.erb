@@ -1,0 +1,22 @@
+<div class="blog-index">
+	<h1>Register</h1>
+	<%= form_for(@user) do |u| %>
+	 <div class="field">
+    <%= u.label :nickname %><br />
+    <%= u.text_field :nickname %>*
+  </div>
+  <div class="field">
+    <%= u.label :password %><br />
+    <%= u.password_field :password %>*<br />
+    <%= u.password_field :password_confirmation %>*
+  </div>
+  <div class="field">
+    <%= u.label :email %><br />
+    <%= u.email_field :email %>
+  </div>
+  <div class="actions">
+    <%= u.submit %>
+    <%= link_to '登录', 'login' %>
+  </div>
+  <% end %>
+</div>

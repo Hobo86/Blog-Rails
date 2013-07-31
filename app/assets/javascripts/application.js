@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+// require jquery.min
 //= require kindeditor/kindeditor.js
+// require fancybox/jquery.fancybox.pack.js
+// require fancybox/helpers/jquery.fancybox-buttons.js
+// require fancybox/helpers/jquery.fancybox-thumbs.js
+// require fancybox/helpers/jquery.fancybox-media.js
+// require fancybox/jquery.mousewheel-3.0.6.pack.js
 // require_tree .

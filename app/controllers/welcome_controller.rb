@@ -9,4 +9,5 @@ class WelcomeController < ApplicationController
       format.json { render json:@categories}
     end
   end
+
 end

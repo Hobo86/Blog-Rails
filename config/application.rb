@@ -53,10 +53,15 @@ module Blog
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
+    #config.active_record.table_name_prefix = 'hobo_'
+    #onfig.active_record.pluralize_table_names = false
+
     # Enable the asset pipeline
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
   end
 end

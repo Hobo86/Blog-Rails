@@ -7,6 +7,15 @@ Blog::Application.routes.draw do
         get 'archive'
       end
   end
+
+  resources :users do
+    collection do
+      get   'login'
+      get   'register'
+      post  'verify'
+      get   'logout'
+    end
+  end
   
   resources :archives
   

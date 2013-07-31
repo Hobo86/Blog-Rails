@@ -11,23 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725062529) do
+ActiveRecord::Schema.define(:version => 201307250843508) do
 
-  create_table "categories", :force => true do |t|
+  create_table "category", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "comments", :force => true do |t|
-    t.string   "commenter"
-    t.text     "body"
+  create_table "comment", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
+  add_index "comment", ["post_id"], :name => "index_hobo_comment_on_post_id"
+  add_index "comment", ["user_id"], :name => "index_hobo_comment_on_user_id"
 
   create_table "kindeditor_assets", :force => true do |t|
     t.string   "asset"
@@ -37,22 +39,33 @@ ActiveRecord::Schema.define(:version => 20130725062529) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "posts", :force => true do |t|
+  create_table "post", :force => true do |t|
+    t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "name"
     t.string   "title"
     t.text     "content"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "tags", :force => true do |t|
-    t.string   "name"
+  add_index "post", ["category_id"], :name => "index_hobo_post_on_category_id"
+  add_index "post", ["user_id"], :name => "index_hobo_post_on_user_id"
+
+  create_table "tag", :force => true do |t|
     t.integer  "post_id"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "tags", ["post_id"], :name => "index_tags_on_post_id"
+  add_index "tag", ["post_id"], :name => "index_hobo_tag_on_post_id"
+
+  create_table "user", :force => true do |t|
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
