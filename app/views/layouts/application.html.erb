@@ -35,9 +35,11 @@
 	
 	<!--RSS-->
   <nav role="navigation">
+  	<!--
 		<ul class="subscription" data-subscription="rss">
-  		<li><a href="http://www.hobo86.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  		<li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
 		</ul>
+		-->
 	 	<% if @_current_user %>
     	<ul class="subscription" data-subscription="rss">
     		<li> <%= link_to @_current_user.nickname, @_current_user %></li>
@@ -55,12 +57,6 @@
 		    <input type="hidden" name="q" value="site:www.hobo86.com">
 		    <input class="search" type="text" name="q" results="0" placeholder="Search">
 		  </fieldset>
-			<fieldset class="mobile-nav">
-				<select>
-					<option value="">Navigate…</option>
-					<option value="http://www.hobo86.com/">» 首页</option>
-				</select>
-			</fieldset>
 		</form>
 
 		
