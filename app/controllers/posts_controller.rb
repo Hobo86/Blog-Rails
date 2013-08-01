@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-	#http_basic_authenticate_with :name => "Steven", :password => "123456", :except => [:index, :show]
-  #skip_before_filter :require_login, :only => [:index]
- 
-  before_filter :authenticate, :except => [:index, :show]
-  
+  #管理权限验证
+  before_filter :admin_authenticate, :only => [:admin, :new, :edit, :create, :update, :destroy]
+  #登录验证
+  before_filter :authenticate, :only => []
+
   # GET /posts
   # GET /posts.json
   def index
@@ -55,6 +55,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    params.permit!
     @post = Post.new(params[:post])
 
     respond_to do |format|
@@ -99,7 +100,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :title, :category_id, tags_attributes: [ :name ], categories_attributes: [:name] )
+    params.require(:post).permit(:content, :title, :category_id, tags_attributes: [ :name ], categories_attributes: [:name], comments_attributes: [:user, :title, :content] )
   end
 
 end

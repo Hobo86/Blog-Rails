@@ -39,13 +39,28 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    if current_user
+    if @_current_user
       return true;
     else
       respond_to do |format|
-        format.html { redirect_to "/user/login", notice: 'Need Login!' }
+        format.html { redirect_to login_users_path, notice: 'Need Login!' }
       end
     end
-      
+  end
+
+  def admin_authenticate
+    if @_current_user
+      if @_current_user.id <10
+        return true
+      else
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: 'No Access!' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to login_users_path, notice: 'Need Login!' }
+      end
+    end
   end
 end

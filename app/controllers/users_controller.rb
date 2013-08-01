@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	#登录验证
+	before_filter :authenticate, :except => [:login, :show, :verify, :register, :create]
 
 	def show
 		respond_to do |format|
@@ -7,7 +9,7 @@ class UsersController < ApplicationController
 	end
 	
   def login
-		if authenticate
+		if @_current_user
 			respond_to do |format|
       	format.html { redirect_to @_current_user }
   		end
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
 	end
 
 	def register
-		if authenticate
+		if @_current_user
 			respond_to do |format|
       	format.html { redirect_to @_current_user }
   		end
