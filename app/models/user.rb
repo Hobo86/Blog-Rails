@@ -21,5 +21,9 @@ class User < ActiveRecord::Base
 
   def self.authenticate(nickname, password)
     where("nickname=? AND password=?", nickname, password).first
+  end
+
+  def admin?
+    self.id <= 5
   end		     		       						
 end

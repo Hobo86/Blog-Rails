@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def admin_authenticate
     if @_current_user
-      if @_current_user.id <10
+      if @_current_user.admin?
         return true
       else
         respond_to do |format|

@@ -63,9 +63,9 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
       if @user.save
-        format.html { render action: "login", notice: 'Register Success!' }
+        format.html { render login_users_path, notice: 'Register Success!' }
       else
-      	format.html { render action: "register", notice: 'Register error!'}
+      	format.html { render register_users_path, notice: 'Register error!'}
       end
     end
 	end
