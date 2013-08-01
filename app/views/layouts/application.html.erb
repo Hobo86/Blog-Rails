@@ -39,14 +39,14 @@
   		<li><a href="http://www.hobo86.com" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
 		</ul>
 	 	<% if @_current_user %>
-    	<p class="notice"><%= @_current_user.nickname %></p>
     	<ul class="subscription" data-subscription="rss">
+    		<li> <%= link_to @_current_user.nickname, @_current_user %></li>
   			<li> <%= link_to "Logout", "users/logout" %></li>
 			</ul>
 		<% else %>
     	<ul class="subscription" data-subscription="rss">
-  			<li> <%= link_to "Login", "users/login" %></li>
-  			<li> <%= link_to "Register", "users/register" %></li>
+  			<li> <%= link_to "Login", "/users/login" %></li>
+  			<li> <%= link_to "Register", "/users/register" %></li>
 			</ul>
   	<% end %>
 		

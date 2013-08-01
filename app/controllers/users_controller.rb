@@ -7,10 +7,16 @@ class UsersController < ApplicationController
 	end
 	
   def login
-  	@user = User.new
-		respond_to do |format|
-      format.html # login.html.erb
-  	end
+		if authenticate
+			respond_to do |format|
+      	format.html { redirect_to @_current_user }
+  		end
+		else
+			@user = User.new
+			respond_to do |format|
+				format.html # login.html.erb
+			end
+		end
 	end
 
 	def verify
@@ -37,22 +43,35 @@ class UsersController < ApplicationController
 	end
 
 	def register
-		@user = User.new
-		respond_to do |format|
-      format.html # register.html.erb
-  	end
+		if authenticate
+			respond_to do |format|
+      	format.html { redirect_to @_current_user }
+  		end
+		else
+			@user = User.new
+			respond_to do |format|
+	      format.html # register.html.erb
+	  	end
+		end
 	end
 
 	def create
+		params.permit!
 		@user = User.new(params[:user])
 
 		respond_to do |format|
       if @user.save
         format.html { render action: "login", notice: 'Register Success!' }
       else
-        format.html { redirect_to :back, notice: 'Register Error!'  }
+      	format.html { render action: "register", notice: 'Register error!'}
       end
     end
 	end
+
+	private 
+
+  def user_params
+    params.require(:user).permit(:email, :nickname, :password)
+  end
 
 end

@@ -96,4 +96,10 @@ class PostsController < ApplicationController
     end
   end
 
+  private
+
+  def post_params
+    params.require(:post).permit(:content, :title, :category_id, tags_attributes: [ :name ], categories_attributes: [:name] )
+  end
+
 end

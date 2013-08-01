@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 	belongs_to :user
   belongs_to :category
     
-  attr_accessible :content, :title, :category_id, :tags_attributes, :categories_attributes
+  #attr_accessible :content, :title, :category_id, :tags_attributes, :categories_attributes
   validates :title, 	:presence => true,
             			     :length => { :minimum => 5 },
                        :uniqueness => { :message => "Message"}
