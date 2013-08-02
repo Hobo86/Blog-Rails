@@ -13,4 +13,4 @@ cat production.log.20070702|grep "200 OK"|wc -l
 统计URL的访问频度 
 cat production.log.20070702 |grep "200 OK" | awk '{print $17}'|sort|uniq -c | sort -r -n > stat.log  
 =end
-RAILS_DEFAULT_LOGGER = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log", "daily")
+RAILS_DEFAULT_LOGGER = Logger.new("#{Rails.root}/log/#{Rails.env}.log", "daily")
